@@ -46,11 +46,36 @@ st.markdown(
         background-size: 100% 100%;
     }
     .block-container {
-        padding: 2rem 2.5rem !important;
+        padding: 2rem 5rem !important;
         margin-top: 1rem;
+        max-width: 1400px;
     }
     .stApp, .stApp p, .stApp span, .stApp label, .stMarkdown, h1, h2, h3, h4 {
         color: #0d1117 !important;
+    }
+    /* Reducir ancho de los number_input (Rb, Rc, etc.) a 3/4 y agrandar su texto */
+    div[data-testid="stNumberInput"] {
+        max-width: 75%;
+    }
+    div[data-testid="stNumberInput"] input {
+        color: #0d1117 !important;
+        font-weight: 700 !important;
+        font-size: 1.05rem !important;
+    }
+    div[data-testid="stSlider"] label, div[data-testid="stNumberInput"] label {
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+    }
+    /* Espaciado entre columnas para evitar sensación de apretado */
+    div[data-testid="stHorizontalBlock"] {
+        gap: 1rem;
+    }
+    /* Reducir ligeramente el tamaño de las métricas (Ib, Ic, Vce, Ic(sat)) */
+    div[data-testid="stMetric"] [data-testid="stMetricValue"] {
+        font-size: 1.55rem !important;
+    }
+    div[data-testid="stMetric"] [data-testid="stMetricLabel"] {
+        font-size: 0.85rem !important;
     }
     .circuit-frame {
         background: #ffffff;
@@ -72,6 +97,7 @@ st.markdown(
         border: 6px solid #000000;
         border-radius: 14px;
         padding: 0.75rem;
+        max-width: 92%;
     }
     div[data-testid="stMetric"] {
         background: #ffffff;
@@ -481,7 +507,7 @@ with tab_a:
     )
     st.caption("📘 Referencia: *Semana 7 - TRANSISTORES*, Página 24 (Figura 13).")
 
-    col_form, col_diag = st.columns([1, 1])
+    col_form, col_gap, col_diag = st.columns([1, 0.18, 1])
     with col_form:
         vcc_a = st.slider("Vcc (V)", 0.0, 30.0, 10.0, 0.1, key="vcc_a")
         rb_a = st.number_input("Rb (Ω)", min_value=1.0, value=1_000_000.0, step=1000.0, key="rb_a")
@@ -510,7 +536,7 @@ with tab_b:
     )
     st.caption("📘 Referencia: *Semana 8 - Fundamentos de los transistores*, Página 27 (Figura 10).")
 
-    col_form, col_diag = st.columns([1, 1])
+    col_form, col_gap, col_diag = st.columns([1, 0.18, 1])
     with col_form:
         vcc_b = st.slider("Vcc (V)", 0.0, 30.0, 20.0, 0.1, key="vcc_b")
         vee_b = st.slider("Vee (V)", 0.0, 30.0, 20.0, 0.1, key="vee_b")
@@ -540,7 +566,7 @@ with tab_c:
     )
     st.caption("📘 Referencia: *Semana 10 Adicional*, Páginas 1 y 2 (Figuras 1 y 2a).")
 
-    col_form, col_diag = st.columns([1, 1])
+    col_form, col_gap, col_diag = st.columns([1, 0.18, 1])
     with col_form:
         vcc_c = st.slider("Vcc (V)", 0.0, 30.0, 10.0, 0.1, key="vcc_c")
         r1_c = st.number_input("R1 (Ω)", min_value=1.0, value=10_000.0, step=100.0, key="r1_c")
