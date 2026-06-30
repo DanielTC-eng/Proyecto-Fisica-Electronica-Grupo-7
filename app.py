@@ -96,6 +96,28 @@ st.markdown(
         margin-top: .5rem; margin-bottom: 1rem;
     }
     .beta-note * { color: #0d1117 !important; }
+
+    /* Título principal centrado con tipografía Rockwell Extra Bold */
+    h1 {
+        text-align: center !important;
+        font-family: 'Rockwell Extra Bold', 'Rockwell', 'Georgia', serif !important;
+        font-weight: 800 !important;
+        width: 100%;
+    }
+
+    /* Pestañas de selección de circuito: más separadas, en negrita y negro */
+    div[data-testid="stTabs"] [data-baseweb="tab-list"] {
+        gap: 2.5rem;
+    }
+    div[data-testid="stTabs"] [data-baseweb="tab"] {
+        font-weight: 800 !important;
+        color: #0d1117 !important;
+        font-size: 1.05rem;
+    }
+    div[data-testid="stTabs"] [data-baseweb="tab"] p {
+        font-weight: 800 !important;
+        color: #0d1117 !important;
+    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -445,9 +467,9 @@ def render_results(res, vce_max):
 # ----------------------------------------------------------------------------
 
 tab_a, tab_b, tab_c = st.tabs([
-    "🅰️ Polarización de Base (Fija)",
-    "🅱️ Polarización de Emisor",
-    "🅲️ Divisor de Tensión",
+    "Polarización de Base (Fija)",
+    "Polarización de Emisor",
+    "Divisor de Tensión",
 ])
 
 # ============================ OPCIÓN A ======================================
