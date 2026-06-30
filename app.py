@@ -53,9 +53,16 @@ st.markdown(
     .stApp, .stApp p, .stApp span, .stApp label, .stMarkdown, h1, h2, h3, h4 {
         color: #0d1117 !important;
     }
-    /* Reducir ancho de los number_input (Rb, Rc, etc.) a 3/4 y agrandar su texto */
+    /* Sliders (Vcc, Vee) y number_input (Rb, Rc, Re...) al 80% del ancho, centrados */
+    div[data-testid="stSlider"] {
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
     div[data-testid="stNumberInput"] {
-        max-width: 75%;
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
     }
     div[data-testid="stNumberInput"] input {
         color: #0d1117 !important;
@@ -97,7 +104,15 @@ st.markdown(
         border: 6px solid #000000;
         border-radius: 14px;
         padding: 0.75rem;
-        max-width: 92%;
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /* Centrar el bloque de métricas (Ib, Ic, Vce, Ic(sat)) igual que la gráfica de abajo */
+    div[data-testid="column"] > div > div[data-testid="stHorizontalBlock"]:has(div[data-testid="stMetric"]) {
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
     }
     div[data-testid="stMetric"] {
         background: #ffffff;
@@ -131,18 +146,23 @@ st.markdown(
         width: 100%;
     }
 
-    /* Pestañas de selección de circuito: más separadas, en negrita y negro */
+    /* Pestañas de selección de circuito: más separadas, en negrita, negro y con fondo sombreado en la activa */
     div[data-testid="stTabs"] [data-baseweb="tab-list"] {
-        gap: 2.5rem;
+        gap: 3.5rem;
     }
     div[data-testid="stTabs"] [data-baseweb="tab"] {
         font-weight: 800 !important;
         color: #0d1117 !important;
         font-size: 1.05rem;
+        border-radius: 10px 10px 0 0;
+        padding: 0.5rem 1rem;
     }
     div[data-testid="stTabs"] [data-baseweb="tab"] p {
         font-weight: 800 !important;
         color: #0d1117 !important;
+    }
+    div[data-testid="stTabs"] [data-baseweb="tab"][aria-selected="true"] {
+        background-color: rgba(0, 0, 0, 0.12);
     }
     </style>
     """,
