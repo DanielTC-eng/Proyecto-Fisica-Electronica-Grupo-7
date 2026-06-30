@@ -570,12 +570,50 @@ def render_results(res, vce_max):
 # LAYOUT PRINCIPAL: 4 PESTAÑAS (3 de polarización + Presentación)
 # ----------------------------------------------------------------------------
 
-tab_a, tab_b, tab_c, tab_pres = st.tabs([
+tab_pres, tab_a, tab_b, tab_c = st.tabs([
+    "Presentación",
     "Polarización de Base (Fija)",
     "Polarización de Emisor",
     "Divisor de Tensión",
-    "Presentación",
 ])
+
+# ============================ PRESENTACIÓN ==================================
+with tab_pres:
+    col_board, col_shield = st.columns([1.6, 1], vertical_alignment="center")
+
+    with col_board:
+        st.markdown(
+            """
+            <div class="pres-board">
+                <h3>Facultad:</h3>
+                <ul><li>Ingeniería de Sistemas e Informática</li></ul>
+                <h3>Profesor:</h3>
+                <ul><li>Galarreta Díaz, Jose Hermenegildo</li></ul>
+                <h3>Asignatura:</h3>
+                <ul><li>Física Electrónica</li></ul>
+                <h3>Integrantes:</h3>
+                <ul>
+                    <li>Machaca Ponce, Sebastián Emanuel</li>
+                    <li>Huallpacuna Gutierrez, Jean Piero</li>
+                    <li>Tafur Coveñas, Angel Daniel</li>
+                </ul>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col_shield:
+        st.markdown(
+            f"""
+            <div class="pres-shield-wrap">{img_unmsm_shield()}</div>
+            <div class="pres-shield-caption">
+                UNIVERSIDAD NACIONAL MAYOR DE<br>SAN MARCOS
+                <small>Universidad del Perú, Decana de América</small>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
 
 # ============================ OPCIÓN A ======================================
 with tab_a:
@@ -667,44 +705,6 @@ with tab_c:
         render_load_line(res_c["vce"], res_c["ic"], res_c["ib"], vcc_c, res_c["ic_sat"])
         render_alert(res_c["estado"], vcc_c)
 
-# ============================ PRESENTACIÓN ==================================
-with tab_pres:
-    col_board, col_shield = st.columns([1.6, 1])
-
-    with col_board:
-        st.markdown(
-            """
-            <div class="pres-board">
-                <h3>Facultad:</h3>
-                <ul><li>Ingeniería de Sistemas e Informática</li></ul>
-                <h3>Profesor:</h3>
-                <ul><li>Galarreta Díaz, Jose Hermenegildo</li></ul>
-                <h3>Asignatura:</h3>
-                <ul><li>Física Electrónica</li></ul>
-                <h3>Integrantes:</h3>
-                <ul>
-                    <li>Machaca Ponce, Sebastián Emanuel</li>
-                    <li>Huallpacuna Gutierrez, Jean Piero</li>
-                    <li>Tafur Coveñas, Angel Daniel</li>
-                </ul>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-
-    with col_shield:
-        st.markdown(
-            f"""
-            <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:600px;">
-                <div class="pres-shield-wrap">{img_unmsm_shield()}</div>
-                <div class="pres-shield-caption">
-                    UNIVERSIDAD NACIONAL MAYOR DE<br>SAN MARCOS
-                    <small>Universidad del Perú, Decana de América</small>
-                </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
 
 st.divider()
 st.caption(
