@@ -197,7 +197,6 @@ st.markdown(
     }
     .pres-shield-wrap {
         text-align: center;
-        padding-top: 1.5rem;
     }
     .pres-shield-caption {
         text-align: center;
@@ -413,7 +412,7 @@ UNMSM_SHIELD_B64 = "iVBORw0KGgoAAAANSUhEUgAAAPoAAAEkCAYAAAAGryzWAAAQAElEQVR4Aey9
 
 def img_unmsm_shield():
     """Devuelve un <img> con el escudo oficial de San Marcos embebido en base64."""
-    return f'<img src="data:image/png;base64,{UNMSM_SHIELD_B64}" style="width:170px;height:auto;" alt="Escudo UNMSM"/>'
+    return f'<img src="data:image/png;base64,{UNMSM_SHIELD_B64}" style="width:240px;height:auto;" alt="Escudo UNMSM"/>'
 
 
 # ----------------------------------------------------------------------------
@@ -695,10 +694,12 @@ with tab_pres:
     with col_shield:
         st.markdown(
             f"""
-            <div class="pres-shield-wrap">{img_unmsm_shield()}</div>
-            <div class="pres-shield-caption">
-                UNIVERSIDAD NACIONAL MAYOR DE<br>SAN MARCOS
-                <small>Universidad del Perú, Decana de América</small>
+            <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:600px;">
+                <div class="pres-shield-wrap">{img_unmsm_shield()}</div>
+                <div class="pres-shield-caption">
+                    UNIVERSIDAD NACIONAL MAYOR DE<br>SAN MARCOS
+                    <small>Universidad del Perú, Decana de América</small>
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
