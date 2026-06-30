@@ -41,16 +41,18 @@ st.markdown(
         background-attachment: fixed;
     }
     .block-container {
-        background-color: rgba(13, 17, 23, 0.88);
-        border-radius: 18px;
         padding: 2rem 2.5rem !important;
         margin-top: 1rem;
     }
-    .circuit-frame {
+    .stApp, .stApp p, .stApp span, .stApp label, .stMarkdown, h1, h2, h3, h4 {
+        color: #0d1117 !important;
+    }
+    .circuit-frame, .chart-frame {
         background: #ffffff;
         border: 6px solid #000000;
         border-radius: 14px;
         padding: 1rem;
+        margin-bottom: 0.75rem;
     }
     .alert-ok {
         background-color: #0f3320; border: 1px solid #2ea043;
@@ -65,10 +67,11 @@ st.markdown(
         border-radius: 10px; padding: 1rem; color: #ff9a96; font-weight: 600;
     }
     .beta-note {
-        background-color: #1c2333; border-left: 4px solid #58a6ff;
-        border-radius: 8px; padding: .8rem 1rem; font-size: 0.85rem; color: #c9d1d9;
-        margin-top: .5rem;
+        background-color: #ffffff; border-left: 5px solid #1f6feb;
+        border-radius: 8px; padding: .8rem 1rem; font-size: 0.85rem; color: #0d1117 !important;
+        margin-top: .5rem; margin-bottom: 1rem;
     }
+    .beta-note * { color: #0d1117 !important; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -362,7 +365,7 @@ def render_load_line(vce, ic, ib, vce_max, ic_sat):
             mode="lines",
             name=f"Ib = {ib_curve*1e6:.1f} µA" if is_active_curve else None,
             line=dict(
-                color="#3fb950" if is_active_curve else "#2c3a4a",
+                color="#2ea043" if is_active_curve else "#b7c4d6",
                 width=3 if is_active_curve else 1.5,
                 dash="solid" if is_active_curve else "dot",
                 shape="spline",
@@ -375,33 +378,36 @@ def render_load_line(vce, ic, ib, vce_max, ic_sat):
     fig.add_trace(go.Scatter(
         x=[0, vce_max], y=[ic_sat * 1000, 0],
         mode="lines", name="Recta de Carga (DC)",
-        line=dict(color="#58a6ff", width=3),
+        line=dict(color="#1f6feb", width=3),
     ))
 
     # --- Punto Q ---
     fig.add_trace(go.Scatter(
         x=[vce], y=[ic * 1000],
         mode="markers+text", name="Punto Q",
-        marker=dict(color="#ff4d4d", size=14, line=dict(width=2, color="white")),
+        marker=dict(color="#d62828", size=14, line=dict(width=2, color="#000000")),
         text=[f"Q ({vce:.2f} V, {ic*1000:.3f} mA)"],
         textposition="top center",
-        textfont=dict(color="#ff9a96"),
+        textfont=dict(color="#000000"),
     ))
 
     fig.update_layout(
-        template="plotly_dark",
-        title=dict(text="Curvas Características del Colector", font=dict(size=14, color="#c9d1d9")),
+        template="plotly_white",
+        title=dict(text="Curvas Características del Colector", font=dict(size=14, color="#0d1117")),
         xaxis_title="Vce (V)",
         yaxis_title="Ic (mA)",
-        xaxis=dict(range=[0, vce_max * 1.05], gridcolor="#30363d"),
-        yaxis=dict(range=[0, ic_sat * 1000 * 1.15], gridcolor="#30363d"),
-        plot_bgcolor="#0e1117",
-        paper_bgcolor="#0e1117",
+        xaxis=dict(range=[0, vce_max * 1.05], gridcolor="#d0d7de", color="#0d1117"),
+        yaxis=dict(range=[0, ic_sat * 1000 * 1.15], gridcolor="#d0d7de", color="#0d1117"),
+        plot_bgcolor="#ffffff",
+        paper_bgcolor="#ffffff",
+        font=dict(color="#0d1117"),
         margin=dict(l=10, r=10, t=40, b=10),
         height=420,
-        legend=dict(orientation="h", y=-0.2),
+        legend=dict(orientation="h", y=-0.2, font=dict(color="#0d1117")),
     )
+    st.markdown('<div class="chart-frame">', unsafe_allow_html=True)
     st.plotly_chart(fig, use_container_width=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 
 def render_results(res, vce_max):
